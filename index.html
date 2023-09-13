@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Échange Linguistique</title>
+    <link rel="stylesheet" href="styleac.css">
+</head>
+<body>
+    <header>
+        <h1>Chat Vidéo</h1>
+    </header>
+    <main>
+        <div class="video-container">
+            <video id="localVideo" autoplay muted></video>
+            <video id="remoteVideo" autoplay></video>
+            <img src="suivant.png" id="nextButton" alt="Suivant" title="Suivant" />
+            <img src="stop.png" id="stopButton" alt="stop" title="stop"/>
+        </div>
+
+        <div id="slideMenu">
+            <div class="message-box">
+                <ul id="messageList">
+                    <!-- Messages will appear here -->
+                </ul>
+                <div class="message-input">
+                    <textarea id="messageInput" placeholder="Tapez votre message ici..."></textarea>
+                    <img src="envoye.png" id="sendMessage" title="sendMessage"/>
+                </div>
+            </div>
+            <img src="message.png" id="messageButton" alt="message" title="message"/>
+        </div>
+    </main>
+
+    <!-- Linking to the external script -->
+    <script src="scripts.js"></script>
+
+    <!-- Inline JavaScript -->
+    <script>
+        function openMenu() {
+            document.getElementById('slideMenu').style.right = '0px';
+        }
+
+        function closeMenu() {
+            document.getElementById('slideMenu').style.right = '-400px';
+        }
+
+        document.getElementById('messageButton').addEventListener('click', function() {
+            const slideMenu = document.getElementById('slideMenu');
+            
+            if (slideMenu.style.right === '0px' || slideMenu.style.right === "") {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        document.getElementById('sendMessage').addEventListener('click', function () {
+            const messageInput = document.getElementById('messageInput');
+            const messageList = document.getElementById('messageList');
+            const newMessage = document.createElement('li');
+
+            newMessage.textContent = messageInput.value;
+            newMessage.className = 'message sent'; 
+
+            messageList.appendChild(newMessage);
+            messageInput.value = '';
+
+            // Auto scroll to the bottom when a new message is added
+            messageList.scrollTop = messageList.scrollHeight;
+        });
+
+        function addReceivedMessage(text) {
+            const messageList = document.getElementById('messageList');
+            const newMessage = document.createElement('li');
+
+            newMessage.textContent = text;
+            newMessage.className = 'message received'; 
+
+            messageList.appendChild(newMessage);
+
+            // Auto scroll to the bottom when a new message is added
+            messageList.scrollTop = messageList.scrollHeight;
+        }
+    </script>
+
+    <!-- Inclure les scripts WebRTC -->
+    <script src="webrtc-scripts.js"></script>
+    <script>
+        const configuration = {'iceServers': [{'urls': 'stun:stun.l.google.com:19302'}]};
+        const peerConnection = new RTCPeerConnection(configuration);
+
+        const localVideo = document.getElementById('localVideo');
+        const remoteVideo = document.getElementById('remoteVideo');
+
+        navigator.mediaDevices.getUserMedia({'video': true, 'audio': true})
+            .then(localStream => {
+                localVideo.srcObject = localStream;
+                localStream.getTracks().forEach(track => {
+                    peerConnection.addTrack(track, localStream);
+                });
+            })
+            .catch(error => {
+                console.error('Error accessing media devices.', error);
+            });
+
+        peerConnection.addEventListener('track', event => {
+            const [remoteStream] = event.streams;
+            remoteVideo.srcObject = remoteStream;
+        });
+
+        // Code pour passer au prochain utilisateur
+        document.getElementById('nextButton').addEventListener('click', () => {
+            // Code pour passer au prochain utilisateur
+        });
+
+        // Code pour arrêter la communication
+        document.getElementById('stopButton').addEventListener('click', () => {
+            // Fermeture de la connexion
+            peerConnection.close();
+        });
+    </script>
+
+    </script>
+</body>
+
+</html>

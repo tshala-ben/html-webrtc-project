@@ -1,0 +1,205 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #0068b8;
+    color: #fff;
+    padding: 20px 0;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+video {
+    width: 45%;
+    border: 3px solid #333;
+    margin: 20px 2%;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    gap: 2%;
+}
+
+.message-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+textarea {
+    width: 80%;
+    padding: 10px;
+    resize: none;
+}
+
+button {
+    width: 15%;
+}
+
+#nextButton {
+    position: fixed;
+    bottom: 350px;
+    right: 650px;
+    z-index: 1; /* Assurez-vous qu'il apparaît au-dessus de la vidéo */
+    cursor: pointer; /* Change le curseur pour indiquer que c'est cliquable */
+    width: 50px; /* Vous pouvez ajuster cela selon la taille souhaitée pour l'image */
+    height: auto; /* Pour maintenir les proportions de l'image */
+}
+
+#stopButton {
+    position: fixed;
+    bottom: 250px;
+    right: 650px;
+    z-index: 1; /* Assurez-vous qu'il apparaît au-dessus de la vidéo */
+    cursor: pointer; /* Change le curseur pour indiquer que c'est cliquable */
+    width: 50px; /* Vous pouvez ajuster cela selon la taille souhaitée pour l'image */
+    height: auto; /* Pour maintenir les proportions de l'image */
+}
+
+#slideMenu {
+    position: fixed;
+    top: 0;
+    right: -435px;  /* Initially off-screen */
+    width: 400px;
+    height: 100%;
+    background-color: #f5f5f5;
+    transition: right 0.3s;
+    padding: 20px;
+    box-shadow: -4px 0 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+#messageList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    max-height: calc(100% - 100px); /* adjust based on your header and footer size */
+    
+}
+
+
+#closeMenu {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+
+.message div {
+    padding: 10px 15px; /* Added more padding for better appearance */
+    word-wrap: break-word; /* To ensure long words or URLs don't break the layout */
+    display: inline-block;
+}
+
+.message {
+    padding: 10px;
+    margin: 5px 10px;
+    border-radius: 10px;
+    max-width: 70%;
+    clear: both;
+    word-wrap: break-word; /* To ensure long words or URLs don't break the layout */
+    list-style-type: none; /* To remove bullet points from the list */
+}
+
+.sent {
+    background-color: #a0e1eb;
+    float: right; /* Aligns the message to the right */
+}
+
+.received {
+    background-color: #e1e1e1;
+    float: left; /* Aligns the message to the left */
+}
+
+#openMenuButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+#messageButton {
+    position: absolute;
+    bottom: 580px;
+    right: 440px;
+    z-index: 1; /* Assurez-vous qu'il apparaît au-dessus de la vidéo */
+    cursor: pointer; /* Change le curseur pour indiquer que c'est cliquable */
+    width: 50px; /* Vous pouvez ajuster cela selon la taille souhaitée pour l'image */
+    height: auto; /* Pour maintenir les proportions de l'image */
+}
+
+/* Add or update these styles in your existing CSS */
+
+.message-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Hide overflowing messages */
+}
+
+.message-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    max-height: calc(100% - 60px); /* Adjust based on your message input and button height */
+}
+
+.message-input {
+    position: absolute; /* Position the input at the bottom */
+    bottom: 0;
+    margin-bottom: 60px;
+    width: 100%; /* Take up the full width */
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background-color: #f5f5f5;
+}
+
+#messageInput {
+    flex: 1;
+    padding: 8px;
+    resize: none;
+    border-radius:30px;
+}
+
+#sendMessage {
+    padding: 8px 15px;
+    margin-left: 10px;
+    margin-right: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    height: 25%;
+    width: 5%;
+}
+
+#localVideo {
+
+    border-radius:30px;   
+}
+
+#remoteVideo {
+
+    border-radius:30px;   
+}
